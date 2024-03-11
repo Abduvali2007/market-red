@@ -30,10 +30,19 @@ export const Reducer = (state = initialState, action) => {
         };
       }
     case "DELETE":
+      let DelFilter = state.basket.filter((el) => el.id !== action.payload.id);
       return {
         ...state,
-        basket: state.basket.filter((el) => el.id !== action.payload.id),
+        basket: DelFilter,
       };
+    case "BUCKET":
+      let DelFilte = state.basket.filter((el) => el.id !== action.payload.id);
+      if (DelFilte) {
+        return {
+          ...state,
+          bucket: [...state.bucket, action.payload],
+        };
+      }
     case "PLUS":
       return {
         ...state,
